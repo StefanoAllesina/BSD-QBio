@@ -118,7 +118,6 @@
 <ul style="list-style-type:square">
   <li>ggplot2</li>
   <li>dplyr</li>
-  <li>reshape2</li>
   <li>deSolve</li>
 </ul>
 You can find instructions on how to install R packages in RStudio <a href="https://www.youtube.com/watch?v=3RWb5U3X-T8">here</a>.
