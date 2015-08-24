@@ -127,7 +127,7 @@ Notice that $p_2>p_1$ (be careful to inspect the axes labels here)  This makes s
 
 **Question:**  What is the equation decribing this relationship?
 
-The relationship exists because there are only two alleles - and so their proportions must sum to 1.  The linear relatiosnhip you found exists because of this constraint. It also provides a nice check on our work (if $p_1$ and $p_2$ didn't sum to 1 it would suggest somethings is wrong with our code!).  
+The relationship exists because there are only two alleles - and so their proportions must sum to 1.  The linear relationship you found exists because of this constraint. It also provides a nice check on our work (if $p_1$ and $p_2$ didn't sum to 1 it would suggest something is wrong with our code!).  
 
 ### Plotting genotype on allele frequencies
 
@@ -142,11 +142,11 @@ ggplot(gTidy)+geom_point(aes(x=p1,y=Genotype.Proportion,color=variable,shape=var
 
 ```
 
-Now let's look at the graph produced.  There is some scatter in the relationship between genotype proportion and allele frequency for any given genotype, but at the same time there are some very regular underlying relationship between these variables. 
+Now let's look at the graph produced.  There is some scatter in the relationship between genotype proportion and allele frequency for any given genotype, but at the same time there is a very regular underlying relationship between these variables. 
 
 **Question:** What are approximate relationships between $p_{11}$ vs $p_1$, $p_{12}$ vs $p_1$, and $p_22$ vs $p_1$?  (Hint: These look like parabolas, which suggests are some very simple quadratic functions of $p_1$). 
 
-You might start to recognize these are the classic relationships that are taught in  introductory biology courses.  If you recall, under assumptions that there is no mutation, no natural selection, infinite population size, no population substructure and no migration, then the genotype frequencies will take on a simple relationship with the allele frequencies.  That is: $p_{11}=p_1^2$, $p_{12}=2p_1(1-p_1)$ and $p_{22}=(1-p_1)^2$.  In your basic texts, they typicaly use $p$ and $q$ for the frequencies of allele 1 and 2, and present these *Hardy-Wienberg proportions$ as: $p^2$,$2pq$, and $q^2$.  
+You might start to recognize that these are the classic relationships that are taught in  introductory biology courses.  If you recall, under assumptions that there is no mutation, no natural selection, infinite population size, no population substructure and no migration, then the genotype frequencies will take on a simple relationship with the allele frequencies.  That is: $p_{11}=p_1^2$, $p_{12}=2p_1(1-p_1)$ and $p_{22}=(1-p_1)^2$.  In your basic texts, they typicaly use $p$ and $q$ for the frequencies of allele 1 and 2, and present these *Hardy-Wienberg proportions$ as: $p^2$,$2pq$, and $q^2$.  
 
 Another way to think of the Hardy-Weinberg proportions is in the following way.  If the state of an allele ($A_1$ vs $A_2$) is *independent* within a genotype, then the probability of a particular genotype state (such as $A_1 A_1$) will be determined by taking the product of the alleles within it (so $p_{11}=p_1 p_1$ or $p_1^2$). 
 
@@ -162,7 +162,7 @@ ggplot(gTidy)+
 
 On average, the data follow the classic theoretical expectations fairly well.  It is pretty remarkable that such a simple theory has some bearing on reality! 
 
-By eye, we can see some the fit isn't perfect though.  There is a systematic deficiency of heterozygotes and excess of homozygotes.  Why?  
+By eye, we can see that the fit isn't perfect though.  There is a systematic deficiency of heterozygotes and excess of homozygotes.  Why?  
 
 Let's look at this more closely and more formally... 
 
@@ -188,7 +188,7 @@ Let's look at the top few p-values:
 head(g$pval)
 ```
 
-How should we interpret these?  A p-value gives us the frequency at which that the observed departure from expectations (or a more extreme departure) would occur if the null hypothesis is true.  As an agreed upon standard (of the frequentist paradigm for statistical hypothesis testing), if the data are relatively rare under the null (e.g. p-value < 5%), we reject the null hypothesi, and we would infer that the given SNP departs from Hardy-Weinberg expectations.  This is problematic here though.   The problem is that we are testing many, many SNPs (Use `dim(g)` to remind yourself how many rows/SNPs are in the dataset).  Even if the null is universally true, 5% of our SNPs would be expected to be rejected using the standard frequentist paradigm.  This is called the multiple testing problem.  As an example, if we have 50,000 SNPs, that all obey the null hypothesis, we would on average reject ~2500 SNP tests because they have p-values < 0.05 if we are naive about it.   
+How should we interpret these?  A p-value gives us the frequency at which that the observed departure from expectations (or a more extreme departure) would occur if the null hypothesis is true.  As an agreed upon standard (of the frequentist paradigm for statistical hypothesis testing), if the data are relatively rare under the null (e.g. p-value < 5%), we reject the null hypothesi, and we would infer that the given SNP departs from Hardy-Weinberg expectations.  This is problematic here though.   The problem is that we are testing many, many SNPs (Use `dim(g)` to remind yourself how many rows/SNPs are in the dataset).  Even if the null is universally true, 5% of our SNPs would be expected to be rejected using the standard frequentist paradigm.  This is called the multiple testing problem.  As an example, if we have 50,000 SNPs, that all obey the null hypothesis, we would on average naively reject the null for ~2500 SNPs based on the p-values < 0.05.   
 
 We clearly need some methods to deal with the "multiple testing problem".  Two frameworks are the Bonferroni approach and false-discovery-rate (FDR) approaches.  We will not say more about these here.  Instead, we will do two simple checks to see though if our data are globally consistent with the null.  
 
@@ -273,7 +273,7 @@ The region you've found is one of the most differentiated betwen human populatio
 
 ### Wrap-up
 
-Modern population genetics has a lot of additional tools on its workbench, but here using relatively simple and classical ideas combined with genomic-scale data, we have been able to observe and interpret some major features of human genetic diversity.  We have also revisited some basic concepts of probablity and statistics such as indepedence vs correlation, the $\chi^2$ test, and the problems of multiple testing. One remarkable thing we saw is that a very simple mathematical based on assuming independence of alleles of genotypes can predict genotype proportions within ~10% of the true values.  This gives us a hint of how simple mathematical models may be useful even in the face of biological complexity. Finally, we have gained more familiarity with R. We didn't discuss about the possible genotyping errors that might create Hardy-Weinberg departures, but if we were doing additional analyses, we could use Hardy-Weinberg departures to filter them from our data. It's common practice to do so, but with a Bonferonni correction and using data from within populations to do the filtering. 
+Modern population genetics has a lot of additional tools on its workbench, but here using relatively simple and classical ideas combined with genomic-scale data, we have been able to observe and interpret some major features of human genetic diversity.  We have also revisited some basic concepts of probablity and statistics such as indepedence vs correlation, the $\chi^2$ test, and the problems of multiple testing. One remarkable thing we saw is that a very simple mathematical model based on assuming independence of alleles of genotypes can predict genotype proportions within ~10% of the true values.  This gives us a hint of how simple mathematical models may be useful even in the face of biological complexity. Finally, we have gained more familiarity with R. We didn't discuss how genotyping errors that might create Hardy-Weinberg departures, but if we were doing additional analyses, we could use Hardy-Weinberg departures to filter them from our data. It's common practice to do so, but with a Bonferonni correction and using data from within populations to do the filtering. 
 
 
 ### Follow-up activities
