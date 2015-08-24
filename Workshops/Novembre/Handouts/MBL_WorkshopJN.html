@@ -191,7 +191,7 @@ hljs.initHighlightingOnLoad();
 
 <h3>The scenario</h3>
 
-<p>As a biologist, you will learn what are the major patterns that are expected when the data you work with is clean. Using that expertise will save you from the mistake of misinterpreting error-prone data.   In population genetics, there are a number of patterns that we expect to see immediately in our datasets.  In this exercise you will explore one of those major patterns.  Rather than give it a way - let&#39;s begin some analysis and see what we find.  In the narative that follows, we&#39;ll refine our thinking as we go.  </p>
+<p>As a biologist, you will learn what are the major patterns that are expected when the data you work with is clean. Using that expertise will save you from the mistake of misinterpreting error-prone data.   In population genetics, there are a number of patterns that we expect to see immediately in our datasets.  In this exercise you will explore one of those major patterns.  Rather than give it away - let&#39;s begin some analysis and see what we find.  In the narative that follows, we&#39;ll refine our thinking as we go.  </p>
 
 <h3>Introductory terminology</h3>
 
@@ -324,7 +324,7 @@ ggplot(gTidy)+geom_point(aes(x=p1,y=Genotype.Proportion,color=variable,shape=var
 
 <p><strong>Question:</strong> What are approximate relationships between \( p_{11} \) vs \( p_1 \), \( p_{12} \) vs \( p_1 \), and \( p_22 \) vs \( p_1 \)?  (Hint: These look like parabolas, which suggests are some very simple quadratic functions of \( p_1 \)). </p>
 
-<p>You might start to recognize that these are the classic relationships that are taught in  introductory biology courses.  If you recall, under assumptions that there is no mutation, no natural selection, infinite population size, no population substructure and no migration, then the genotype frequencies will take on a simple relationship with the allele frequencies.  That is: \( p_{11}=p_1^2 \), \( p_{12}=2p_1(1-p_1) \) and \( p_{22}=(1-p_1)^2 \).  In your basic texts, they typicaly use \( p \) and \( q \) for the frequencies of allele 1 and 2, and present these *Hardy-Wienberg proportions$ as: \( p^2 \),\( 2pq \), and \( q^2 \).  </p>
+<p>You might start to recognize that these are the classic relationships that are taught in  introductory biology courses.  If you recall, under assumptions that there is no mutation, no natural selection, infinite population size, no population substructure and no migration, then the genotype frequencies will take on a simple relationship with the allele frequencies.  That is: \( p_{11}=p_1^2 \), \( p_{12}=2p_1(1-p_1) \) and \( p_{22}=(1-p_1)^2 \).  In your basic texts, they typicaly use \( p \) and \( q \) for the frequencies of allele 1 and 2, and present these <em>Hardy-Wienberg proportions</em> as: \( p^2 \),\( 2pq \), and \( q^2 \).  </p>
 
 <p>Another way to think of the Hardy-Weinberg proportions is in the following way.  If the state of an allele (\( A_1 \) vs \( A_2 \)) is <em>independent</em> within a genotype, then the probability of a particular genotype state (such as \( A_1 A_1 \)) will be determined by taking the product of the alleles within it (so \( p_{11}=p_1 p_1 \) or \( p_1^2 \)). </p>
 
