@@ -1,7 +1,11 @@
-####### Bifurcation Diagram: Two Strains with Competition ####################
+####### Bifurcation Diagram: Two Strains with Competition ##########################################
 ## Two-strain model with optional sinusoidal forcing
 ## Implemented with deSolve (lsoda) in R
-#########################################################
+## August 2015
+## Authors: Igor Vasiljevic and Sarah Cobey, with R implementation by Sylvia Ranjeva 
+##################################################################################################
+library(deSolve)
+
 ## Function to output system of ODE's at each time point #########################################
 diff_eqs <- function(t,y,p){
   beta = p[[1]]
@@ -80,7 +84,6 @@ sample_times <- seq(min(t),max(t), by = output_interval)
 #initial conditions
 N = c(NSS, NIS, NRS, NSI, NRI, NSR, NIR)
 
-
 for( i in 1:length(param_range)){
   cat("Running value",i, " of", length(param_range), "\n")
   beta1 = param_range[i] # assign param_range[i] to the varying parameter
@@ -92,16 +95,18 @@ for( i in 1:length(param_range)){
   alpha1 = 1
   alpha2 = 1
   omega = 2*(pi/365)
-  #obs_sd = 0.01
+  forcing = 0
   beta = c(beta1,beta2)
   alpha = c(alpha1,alpha2)
   gamma = c(gamma1,gamma2)
+  
   params = list(beta = beta,
                 gamma = gamma,
                 mu = mu,
                 alpha = alpha, 
                 epsilon = epsilon, 
-                omega = omega)  
+                omega = omega,
+                forcing = forcing)  
   
   output = ode(y=N,times=t,func=diff_eqs,parms=params) 
   time <- output[,1]
