@@ -1,6 +1,9 @@
 ####### Two Strains with Competition ####################
 ## Two-strain model with optional sinusoidal forcing
 ## Implemented with deSolve (lsoda) in R
+## August 2015
+## Authors: Igor Vasiljevic and Sarah Cobey, 
+## with R implementation by Sylvia Ranjeva 
 #########################################################
 
 # load package to solve ODEs from R
