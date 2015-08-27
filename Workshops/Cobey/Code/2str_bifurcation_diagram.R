@@ -1,11 +1,7 @@
-####### Bifurcation Diagram: Two Strains with Competition ##########################################
+####### Bifurcation Diagram: Two Strains with Competition ####################
 ## Two-strain model with optional sinusoidal forcing
 ## Implemented with deSolve (lsoda) in R
-## August 2015
-## Authors: Igor Vasiljevic and Sarah Cobey, with R implementation by Sylvia Ranjeva 
-##################################################################################################
-library(deSolve)
-
+#########################################################
 ## Function to output system of ODE's at each time point #########################################
 diff_eqs <- function(t,y,p){
   beta = p[[1]]
@@ -14,7 +10,7 @@ diff_eqs <- function(t,y,p){
   alpha = p[[4]]
   epsilon = p[[5]]
   omega = p[[6]]
-  forcing = p[[7]]
+  forcing =1
   
   if(forcing == 1){
     force = 1 + epsilon*cos(omega*t) # seasonal forcing
@@ -84,6 +80,7 @@ sample_times <- seq(min(t),max(t), by = output_interval)
 #initial conditions
 N = c(NSS, NIS, NRS, NSI, NRI, NSR, NIR)
 
+
 for( i in 1:length(param_range)){
   cat("Running value",i, " of", length(param_range), "\n")
   beta1 = param_range[i] # assign param_range[i] to the varying parameter
@@ -95,18 +92,16 @@ for( i in 1:length(param_range)){
   alpha1 = 1
   alpha2 = 1
   omega = 2*(pi/365)
-  forcing = 0
+  #obs_sd = 0.01
   beta = c(beta1,beta2)
   alpha = c(alpha1,alpha2)
   gamma = c(gamma1,gamma2)
-  
   params = list(beta = beta,
                 gamma = gamma,
                 mu = mu,
                 alpha = alpha, 
                 epsilon = epsilon, 
-                omega = omega,
-                forcing = forcing)  
+                omega = omega)  
   
   output = ode(y=N,times=t,func=diff_eqs,parms=params) 
   time <- output[,1]
@@ -124,7 +119,7 @@ output <- data.frame(param_range = param_range,
 filename <- paste("bifurcation_diagram_", sweep_par, ".jpg" , sep = "")
 jpeg(filename)
 plot(param_range,output[,2],cex=0.1,ylim=c(0,.035),xlab="beta_1",ylab="NIS + NIR")
-  for(i in 3:ncol(output)){
-    points(param_range,output[,i],cex=0.1)
-  }
+for(i in 3:ncol(output)){
+  points(param_range,output[,i],cex=0.1)
+}
 dev.off()
