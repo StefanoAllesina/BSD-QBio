@@ -139,27 +139,27 @@ output <- data.frame(time = time,
 # Plotting #############################################################
 
 ## plot time-series #####################################################
-filename = "time_series.jpg"
-jpeg(filename)
+filename = "time_series.png"
+png(filename, res = 100)
 par(mfrow=c(3,1))
 plot(time,NSS,ylim=c(0,.8),type="l", col = "blue", lwd=1,ylab="Uninfected")
   lines(time, NSR, col="red")
   lines(time, NRS, col = "green")
   lines(time, NRR, col = "cyan")
-  legend('topright', legend = c("NSS", "NSR", "NRS", "NRR") , lwd = 2, col = c("blue","red","green", "cyan"), cex = 1 )
+  legend('topright', legend = c("NSS", "NSR", "NRS", "NRR") , lwd = 2, col = c("blue","red","green", "cyan"), cex = .7 )
 plot(time, I1, ylim = c(0,.005), type = 'l', col = "red", lwd =1 , ylab= "Infected1")
   lines(time, NIS, col = "blue")
   lines(time, NIR, col = "green")
-  legend('topright', legend = c("I1", "NIS", "NIR") , lwd = 2, col = c("red","blue","green") , cex = 1)
+  legend('topright', legend = c("I1", "NIS", "NIR") , lwd = 2, col = c("red","blue","green") , cex = .7)
 plot(time, I2, ylim = c(0,.005), type = 'l', col = "red", lwd =1 , xlab = "Time", ylab= "Infected2")
   lines(time, NSI, col = "blue")
   lines(time, NRI, col = "green")
-  legend('topright', legend = c("I2", "NSI", "NRI") , lwd = 2, col = c("red","blue","green"), cex = 1 )
+  legend('topright', legend = c("I2", "NSI", "NRI") , lwd = 2, col = c("red","blue","green"), cex = .7 )
 dev.off()
 
 ## plot I1 vs I2 #####################################################
-filename = "I1_vs_I2.jpg"
-jpeg(filename)
+filename = "I1_vs_I2.png"
+png(filename, res = 72)
 par(mfrow=c(1,1))
 plot(I1, I2, type = 'l', col = "red", lwd =1 , xlab = "I1", ylab= "I2", main = "I1 vs I2")
 dev.off()
