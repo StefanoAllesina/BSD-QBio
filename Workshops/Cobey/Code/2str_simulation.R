@@ -141,25 +141,32 @@ output <- data.frame(time = time,
 ## plot time-series #####################################################
 filename = "time_series.png"
 png(filename, res = 100)
-par(mfrow=c(3,1))
-plot(time,NSS,ylim=c(0,.8),type="l", col = "blue", lwd=1,ylab="Uninfected")
+
+# plotting parameters
+par(mfrow = c(3, 1),     # 3x1 layout
+    oma = c(2, 2, 0, 0), # two rows of text at the outer left and bottom margin
+    mar = c(1, 1, 1, 1), # space for one row of text at ticks and to separate plots
+    mgp = c(2, 1, 0),    # axis label at 2 rows distance, tick labels at 1 row
+    xpd = NA)            # allow content to protrude into outer margin (and beyond)
+
+plot(time,NSS,ylim=c(0,.8),type="l", col = "blue", lwd=1,xlab = "", ylab="Fraction Uninfected")
   lines(time, NSR, col="red")
   lines(time, NRS, col = "green")
   lines(time, NRR, col = "cyan")
-  legend('topright', legend = c("NSS", "NSR", "NRS", "NRR") , lwd = 2, col = c("blue","red","green", "cyan"), cex = .7 )
-plot(time, I1, ylim = c(0,.005), type = 'l', col = "red", lwd =1 , ylab= "Infected1")
+  legend('topright', legend = c(expression('N'["SS"]), expression('N'["SR"]), expression('N'["RS"]),expression('N'["RR"]) ), lwd = 2, col = c("blue","red","green", "cyan"), cex = .6 )
+plot(time, I1, ylim = c(0,.005), type = 'l', col = "red", lwd =1 ,xlab = "", ylab= "Prevalence Strain 1")
   lines(time, NIS, col = "blue")
   lines(time, NIR, col = "green")
-  legend('topright', legend = c("I1", "NIS", "NIR") , lwd = 2, col = c("red","blue","green") , cex = .7)
-plot(time, I2, ylim = c(0,.005), type = 'l', col = "red", lwd =1 , xlab = "Time", ylab= "Infected2")
+  legend('topright', legend = c(expression('I'[1]), expression('N'["IS"]), expression('N'["IR"])) , lwd = 2, col = c("red","blue","green") , cex = .7)
+plot(time, I2, ylim = c(0,.005), type = 'l', col = "red", lwd =1 , xlab = "Time", ylab= "Prevalence Strain 2")
   lines(time, NSI, col = "blue")
   lines(time, NRI, col = "green")
-  legend('topright', legend = c("I2", "NSI", "NRI") , lwd = 2, col = c("red","blue","green"), cex = .7 )
+  legend('topright', legend = c(expression('I'[2]), expression('N'["SI"]), expression('N'["RI"])) , lwd = 2, col = c("red","blue","green"), cex = .7 )
 dev.off()
 
 ## plot I1 vs I2 #####################################################
 filename = "I1_vs_I2.png"
 png(filename, res = 72)
 par(mfrow=c(1,1))
-plot(I1, I2, type = 'l', col = "red", lwd =1 , xlab = "I1", ylab= "I2", main = "I1 vs I2")
+plot(I1, I2, type = 'l', col = "red", lwd =1 , xlab = expression('I'[1]), ylab= expression('I'[2]), main = "Prevalence Strain 2 vs. Prevalence Strain 1")
 dev.off()
