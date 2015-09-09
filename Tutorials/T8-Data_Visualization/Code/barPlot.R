@@ -2,7 +2,7 @@ library('ggplot2') #load ggplot
 library('reshape2') #load reshape2 for reshaping data.frame objects
 
 #You can set the directory to the directory you want. I used setwd() to move to the appropriate directory, but it will be different for you. You can provide your own directory, or navigate using the GUI.
-#setwd('/Users/Joseph/Documents/QBio/Tutorials/T8-Data_Visualization/Data') 
+setwd('../Data') 
 
 # load the Region data from the working directory
 df <- read.csv('UN population forecasts from Economist charts - Region.csv')
