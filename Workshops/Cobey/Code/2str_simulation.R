@@ -82,9 +82,6 @@ t_start = 0
 t_end = 100*365
 delta_t = .1
 
-#specify output sampling for plotting
-output_interval = 1
-
 #parameters
 params = list(beta = beta,
 gamma = gamma,
