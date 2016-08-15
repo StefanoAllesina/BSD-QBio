@@ -7,7 +7,7 @@
 ##################################################################################################
 
 # load package to solve ODEs from R
-require(deSolve);
+require(deSolve)
 
 ## Function to output system of ODE's at each time point #########################################
 diff_eqs <- function(t,y,p){
@@ -136,8 +136,8 @@ output <- data.frame(time = time,
 # Plotting #############################################################
 
 ## plot time-series #####################################################
-filename = "time_series.png"
-png(filename, res = 100)
+filename = "time_series.pdf"
+pdf(filename)
 
 # plotting parameters
 par(mfrow = c(3, 1),     # 3x1 layout
@@ -162,8 +162,8 @@ plot(time, I2, ylim = c(0,.005), type = 'l', col = "red", lwd =1 , xlab = "Time"
 dev.off()
 
 ## plot I1 vs I2 #####################################################
-filename = "I1_vs_I2.png"
-png(filename, res = 72)
+filename = "I1_vs_I2.pdf"
+pdf(filename)
 par(mfrow=c(1,1))
 plot(I1, I2, type = 'l', col = "red", lwd =1 , xlab = expression('I'[1]), ylab= expression('I'[2]), main = "Prevalence Strain 2 vs. Prevalence Strain 1")
 dev.off()

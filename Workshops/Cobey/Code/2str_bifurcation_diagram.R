@@ -50,10 +50,10 @@ diff_eqs <- function(t,y,p){
 ###########################################################################
 # Run parameters
 run_num = 1  
-end_time = 1000*365 # run simulation for 1000 years
+end_time = 100*365 # run simulation for 1000 years
 output_interval = 365.0  # annual strobing
 t_start = 0
-t_end = 1000*365
+t_end = 100*365
 delta_t = 1
 sweep_par = "beta1"  # change this to label the varying parameter 
 par_min = 1.0/7.0
@@ -116,8 +116,8 @@ for( i in 1:length(param_range)){
 ## plotting:
 output <- data.frame(param_range = param_range,
                      bif_vals)
-filename <- paste("bifurcation_diagram_", sweep_par, ".jpg" , sep = "")
-jpeg(filename)
+filename <- paste0("bifurcation_diagram_", sweep_par, ".pdf")
+pdf(filename)
 plot(param_range,output[,2],cex=0.1,ylim=c(0,.035),xlab="beta_1",ylab="NIS + NIR")
 for(i in 3:ncol(output)){
   points(param_range,output[,i],cex=0.1)
