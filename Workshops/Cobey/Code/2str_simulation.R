@@ -68,7 +68,7 @@ NIR = 0.0
 beta = c(5,5)/7
 gamma = c(1,1)/7
 mu = 1/(10*365)
-alpha = c(.2,.5)
+alpha = c(1,1)
 epsilon = .1
 omega = 2*(pi/365)
 # optional observation noise
