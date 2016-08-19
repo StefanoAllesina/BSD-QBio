@@ -116,8 +116,8 @@ for( i in 1:length(param_range)){
 ## plotting:
 output <- data.frame(param_range = param_range,
                      bif_vals)
-filename <- paste0("bifurcation_diagram_", sweep_par, ".pdf")
-pdf(filename)
+filename <- paste0("bifurcation_diagram_", sweep_par, ".png")
+png(filename)
 plot(param_range,output[,2],cex=0.1,ylim=c(0,.035),xlab="beta_1",ylab="NIS + NIR")
 for(i in 3:ncol(output)){
   points(param_range,output[,i],cex=0.1)
