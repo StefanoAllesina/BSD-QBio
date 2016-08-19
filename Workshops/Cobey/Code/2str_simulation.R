@@ -68,7 +68,7 @@ NIR = 0.0
 beta = c(5,5)/7
 gamma = c(1,1)/7
 mu = 1/(10*365)
-alpha = c(1,1)
+alpha = c(.2,.5)
 epsilon = .1
 omega = 2*(pi/365)
 # optional observation noise
@@ -99,7 +99,6 @@ N = c(NSS, NIS, NRS, NSI, NRI, NSR, NIR)
 
 #simulate #####################################################
 out = ode(y=N,times=t,func=diff_eqs,parms=params)
-
 
 time = out[,1]
 I1 = out[,3] + out[,8]
@@ -136,21 +135,21 @@ output <- data.frame(time = time,
 # Plotting #############################################################
 
 ## plot time-series #####################################################
-filename = "time_series.pdf"
-pdf(filename)
+filename = "time_series.png"
+png(filename)
 
 # plotting parameters
 par(mfrow = c(3, 1),     # 3x1 layout
     oma = c(2, 2, 0, 0), # two rows of text at the outer left and bottom margin
     mar = c(1, 1, 1, 1), # space for one row of text at ticks and to separate plots
     mgp = c(2, 1, 0),    # axis label at 2 rows distance, tick labels at 1 row
-    xpd = NA)            # allow content to protrude into outer margin (and beyond)
+    xpd = FALSE)            # allow content to protrude into outer margin (and beyond)
 
-plot(time,NSS,ylim=c(0,.8),type="l", col = "blue", lwd=1,xlab = "", ylab="Fraction Uninfected")
+plot(time,NSS,ylim=c(0,.8),type="l", col = "blue", lwd=1,xlab = "", ylab="Fraction Uninfected", cex = 2)
   lines(time, NSR, col="red")
   lines(time, NRS, col = "green")
   lines(time, NRR, col = "cyan")
-  legend('topright', legend = c(expression('N'["SS"]), expression('N'["SR"]), expression('N'["RS"]),expression('N'["RR"]) ), lwd = 2, col = c("blue","red","green", "cyan"), cex = .6 )
+  legend('topright', legend = c(expression('N'["SS"]), expression('N'["SR"]), expression('N'["RS"]),expression('N'["RR"]) ), lwd = 2, col = c("blue","red","green", "cyan"), cex = .8 )
 plot(time, I1, ylim = c(0,.005), type = 'l', col = "red", lwd =1 ,xlab = "", ylab= "Prevalence Strain 1")
   lines(time, NIS, col = "blue")
   lines(time, NIR, col = "green")
@@ -162,8 +161,8 @@ plot(time, I2, ylim = c(0,.005), type = 'l', col = "red", lwd =1 , xlab = "Time"
 dev.off()
 
 ## plot I1 vs I2 #####################################################
-filename = "I1_vs_I2.pdf"
-pdf(filename)
+filename = "I1_vs_I2.png"
+png(filename)
 par(mfrow=c(1,1))
 plot(I1, I2, type = 'l', col = "red", lwd =1 , xlab = expression('I'[1]), ylab= expression('I'[2]), main = "Prevalence Strain 2 vs. Prevalence Strain 1")
 dev.off()
